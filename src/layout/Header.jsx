@@ -1,34 +1,28 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import "../styles/Header.css";
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
-
+function Header() {
   return (
-    <header className="eh-header">
-      <div className="eh-container eh-header-inner">
-        <Link to="/" className="eh-brand" aria-label="EventHub Home">
-          <span className="eh-brand-mark" />
-          <span className="eh-brand-text">EventHub</span>
+    <header className="header">
+      <div className="container header-inner">
+        <Link to="/" className="brand">
+          <span className="brand-mark" />
+          <span className="brand-text">EventHub</span>
         </Link>
 
-        <nav className={`eh-nav ${open ? "is-open" : ""}`} aria-label="Primary">
-          <NavLink to="/" className={({ isActive }) => `eh-nav-link ${isActive && pathname === "/" ? "is-active" : ""}`}>Home</NavLink>
-          <NavLink to="/events" className="eh-nav-link">Events</NavLink>
-          <NavLink to="/about" className="eh-nav-link">About</NavLink>
+        <nav className="nav">
+          <NavLink to="/" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>Home</NavLink>
+          <NavLink to="/events" className="nav-link">Events</NavLink>
+          <NavLink to="/about" className="nav-link">About</NavLink>
         </nav>
 
-        <div className="eh-actions">
-          <Link to="/auth/login" className="eh-btn eh-btn-text">Login</Link>
-          <Link to="/auth/signup" className="eh-btn eh-btn-primary">Sign Up</Link>
-          <button className="eh-burger" aria-label="Toggle Menu" onClick={() => setOpen(v => !v)}>
-            <span />
-            <span />
-            <span />
-          </button>
+        <div className="actions">
+          <Link to="/auth/login" className="btn btn-text">Login</Link>
+          <Link to="/auth/signup" className="btn btn-primary">Sign Up</Link>
         </div>
       </div>
     </header>
   );
 }
+
+export default Header;
